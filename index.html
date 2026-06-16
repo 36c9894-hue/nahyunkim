@@ -12,17 +12,16 @@
            1. 변수 및 초기화 (Variables & Reset)
            ========================================== */
         :root {
-            --color-deep-forest: #0D160C;
-            --color-void: #0A0714;
-            --color-neon-green: #39FF14;
-            --color-acid-purple: #B026FF;
-            --color-mystic-blue: #00E5FF;
-            --color-cream: #EAE6DF;
-            --glass-bg: rgba(13, 22, 12, 0.65);
-            --glass-border: rgba(176, 38, 255, 0.3);
+            --color-deep-bg: #0b0f19;      /* 깊은 밤하늘색 */
+            --color-forest: #121f16;       /* 아득한 심연의 숲색 */
+            --color-point-green: #66ff99;  /* 은은하게 빛나는 이끼빛 */
+            --color-mystic-purple: #9d66ff;/* 몽환적인 자줏빛 */
+            --color-cream: #e2e8f0;
+            --glass-bg: rgba(11, 15, 25, 0.75);
+            --glass-border: rgba(157, 102, 255, 0.25);
             --font-main: 'Pretendard', sans-serif;
-            --font-point: 'Black Han Sans', sans-serif; /* 극도로 굵고 강렬한 헤드라인 폰트 */
-            --font-sub: 'Orbit', sans-serif; /* 몽환적인 느낌의 서브 폰트 */
+            --font-point: 'Black Han Sans', sans-serif; /* 극도로 굵고 강렬한 폰트 */
+            --font-sub: 'Orbit', sans-serif;           /* 공간감을 주는 서브 폰트 */
         }
 
         * {
@@ -36,68 +35,58 @@
             scroll-behavior: smooth;
             font-family: var(--font-main);
             color: var(--color-cream);
-            background-color: var(--color-void);
+            background-color: var(--color-deep-bg);
             overflow-x: hidden;
         }
 
         body {
             min-height: 100vh;
-            /* 심해와 깊은 숲, 보랏빛 공백이 뒤섞인 기묘한 그라데이션 */
+            /* 정신없는 그라데이션 대신 깊고 거대한 안개 속 차분한 그라데이션 */
             background: linear-gradient(180deg, 
-                var(--color-void) 0%, 
-                var(--color-deep-forest) 25%, 
-                #120A2A 50%, 
-                #051A18 75%, 
-                var(--color-void) 100%);
+                var(--color-deep-bg) 0%, 
+                var(--color-forest) 30%, 
+                #181124 60%, 
+                var(--color-deep-bg) 100%);
             background-size: 100% 100%;
             position: relative;
-            /* 미세하게 화면이 깜빡이는 듯한 소름 돋는 연출 */
-            animation: vhsGlow 8s infinite steps(4);
         }
 
-        @keyframes vhsGlow {
-            0%, 100% { opacity: 0.98; filter: hue-rotate(0deg); }
-            50% { opacity: 1; filter: hue-rotate(5deg); }
-            95% { opacity: 0.95; }
-        }
-
-        /* 공통 스타일: 타이틀 (크고 무겁게 변경) */
+        /* 공통 스타일: 타이틀 (굵고 크지만 차분하게 광채 조절) */
         .section-title {
             font-family: var(--font-point);
-            font-size: 3.5rem; /* 크기 대폭 확대 */
-            font-weight: 900;
+            font-size: 3.5rem;
             text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--color-neon-green);
-            text-shadow: 0 0 15px rgba(57, 255, 20, 0.6), 3px 3px 0px var(--color-acid-purple);
+            margin-bottom: 3rem;
+            color: var(--color-point-green);
+            text-shadow: 0 0 20px rgba(102, 255, 153, 0.3), 3px 3px 0px var(--color-mystic-purple);
             opacity: 0;
-            transform: translateY(40px) scale(0.95);
-            transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.215, 0.610, 0.355, 1);
             letter-spacing: -1px;
         }
         
         .section-title.active {
             opacity: 1;
-            transform: translateY(0) scale(1);
+            transform: translateY(0);
         }
 
-        /* 공통 스타일: 글래스모피즘 카드 (왜곡 및 네온 테두리 추가) */
+        /* 공통 스타일: 글래스모피즘 카드 (선명도와 두께감 강화) */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 2px solid var(--glass-border);
-            border-radius: 16px; /* 날카롭고 딱딱한 형태 전환 */
-            box-shadow: 0 0 30px rgba(176, 38, 255, 0.15), inset 0 0 15px rgba(255,255,255,0.05);
-            padding: 3rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 4px; /* 더 단단하고 묘한 기분 조형 */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            padding: 3.5rem;
+            transition: all 0.5s ease;
         }
 
-        /* 스크롤 등장 애니메이션 기본 클래스 */
+        /* 스크롤 등장 애니메이션 */
         .reveal {
             opacity: 0;
-            transform: translateY(60px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.215, 0.610, 0.355, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -105,7 +94,7 @@
         }
 
         /* ==========================================
-           2. 환경 효과 (이상 인광, 왜곡 안개)
+           2. 환경 효과 (정적인 밤안개와 미세 인광)
            ========================================== */
         #fireflies-container {
             position: fixed;
@@ -119,37 +108,36 @@
 
         .firefly {
             position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--color-neon-green);
+            width: 3px;
+            height: 3px;
+            background: #fff;
             border-radius: 50%;
-            filter: drop-shadow(0 0 8px var(--color-neon-green));
+            filter: drop-shadow(0 0 6px var(--color-point-green));
             opacity: 0;
-            animation: floatParticle 10s infinite linear;
+            animation: floatParticle 15s infinite linear;
         }
 
         @keyframes floatParticle {
-            0% { transform: translateY(100vh) translateX(0) scale(0.5); opacity: 0; }
-            20% { opacity: 0.8; }
-            80% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) translateX(150px) scale(1.5); opacity: 0; }
+            0% { transform: translateY(105vh) translateX(0); opacity: 0; }
+            30% { opacity: 0.4; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-5vh) translateX(80px); opacity: 0; }
         }
 
-        /* 흐르는 구름/안개 레이어 (기묘한 자줏빛) */
+        /* 기묘하게 떠도는 깊은 밤안개 효과 */
         .dream-mist {
             position: absolute;
             width: 200%;
-            height: 600px;
-            background: radial-gradient(circle, rgba(176, 38, 255, 0.15) 0%, transparent 60%);
-            filter: blur(60px);
+            height: 700px;
+            background: radial-gradient(circle, rgba(157, 102, 255, 0.08) 0%, transparent 70%);
+            filter: blur(80px);
             pointer-events: none;
-            opacity: 0.7;
-            animation: mistMove 30s infinite linear;
+            opacity: 0.8;
+            animation: mistMove 40s infinite ease-in-out;
         }
         @keyframes mistMove {
-            0% { transform: translateX(-30%) translateY(0); }
-            50% { transform: translateX(0%) translateY(80px); }
-            100% { transform: translateX(-30%) translateY(0); }
+            0%, 100% { transform: translateX(-25%) translateY(0); }
+            50% { transform: translateX(0%) translateY(40px); }
         }
 
         /* ==========================================
@@ -161,72 +149,63 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 6rem 2rem;
+            padding: 8rem 2rem;
             position: relative;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
         }
 
         /* --- Hero Section --- */
         #hero {
             height: 100vh;
-            text-align: center;
         }
 
         .hero-card {
-            max-width: 750px;
+            max-width: 800px;
             width: 100%;
-            border-color: var(--color-neon-green);
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.2);
-            animation: glitchFloating 6s ease-in-out infinite;
+            text-align: center;
+            border-color: var(--color-point-green);
+            animation: slowFloat 8s ease-in-out infinite;
         }
 
         .hero-card h1 {
             font-family: var(--font-point);
-            font-size: 3.8rem;
+            font-size: 3.6rem;
             margin-bottom: 2rem;
-            line-height: 1.2;
+            line-height: 1.3;
             word-break: keep-all;
-            color: var(--color-cream);
-            text-shadow: 4px 4px 0px var(--color-acid-purple);
+            text-shadow: 4px 4px 0px var(--color-mystic-purple);
         }
 
         .hero-card p {
             font-family: var(--font-sub);
-            font-size: 1.4rem;
-            color: #A0B09D;
-            margin-bottom: 3rem;
-            letter-spacing: 2px;
+            font-size: 1.3rem;
+            color: #8fa095;
+            letter-spacing: 3px;
         }
 
         .explore-btn {
             font-family: var(--font-point);
             background: transparent;
-            color: var(--color-neon-green);
-            border: 2px solid var(--color-neon-green);
+            color: var(--color-point-green);
+            border: 2px solid var(--color-point-green);
             padding: 1.2rem 3.5rem;
-            font-size: 1.3rem;
-            border-radius: 0px; /* 각진 스타일 */
+            font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            margin-top: 3rem;
             letter-spacing: 1px;
         }
 
         .explore-btn:hover {
-            background: var(--color-neon-green);
-            color: var(--color-void);
-            box-shadow: 0 0 30px var(--color-neon-green);
-            transform: scale(1.05);
+            background: var(--color-point-green);
+            color: var(--color-deep-bg);
+            box-shadow: 0 0 25px rgba(102, 255, 153, 0.4);
         }
 
-        @keyframes glitchFloating {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-15px) scale(0.99); }
-            98% { transform: translateX(0); }
-            99% { transform: translateX(4px) skewX(5deg); }
-            100% { transform: translateX(0); }
+        @keyframes slowFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         /* --- Profile Section --- */
@@ -240,60 +219,40 @@
         }
 
         .polaroid {
-            background: #111;
-            padding: 1.2rem 1.2rem 4rem 1.2rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-            transform: rotate(1deg);
-            border: 1px solid #333;
+            background: #090d16;
+            padding: 1.5rem 1.5rem 4.5rem 1.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
             width: 300px;
-            transition: transform 0.4s ease;
-        }
-        
-        .polaroid:hover {
-            transform: rotate(-3deg) scale(1.05);
         }
 
         .polaroid-img {
             width: 100%;
             height: 260px;
-            background: linear-gradient(135deg, #2A085C, #0F3022);
+            background: linear-gradient(135deg, #170d29, #091711);
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 4rem;
-            position: relative;
-            overflow: hidden;
             border: 1px solid #000;
         }
 
-        /* 섬뜩한 눈동자 눈짓 데코레이션 */
         .polaroid::before {
             content: '👁️';
             position: absolute;
             top: -20px;
             left: calc(50% - 15px);
-            font-size: 2rem;
-            text-shadow: 0 0 10px red;
-            animation: blinkEye 4s infinite steps(1);
-        }
-
-        @keyframes blinkEye {
-            0%, 90%, 100% { opacity: 1; }
-            95% { opacity: 0; }
-        }
-
-        .profile-info {
-            text-align: center;
-            width: 100%;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.2));
         }
 
         .profile-info h3 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 1.5rem;
             font-family: var(--font-point);
-            color: var(--color-mystic-blue);
-            text-shadow: 2px 2px 0px #000;
+            color: var(--color-point-green);
+            text-align: center;
         }
 
         .tags {
@@ -304,21 +263,19 @@
         }
 
         .tag {
-            background: rgba(176, 38, 255, 0.2);
+            background: rgba(157, 102, 255, 0.15);
             padding: 0.5rem 1.2rem;
-            border-radius: 0px;
             font-family: var(--font-sub);
-            font-size: 1rem;
-            border: 1px solid var(--color-acid-purple);
-            color: #FFF;
+            font-size: 0.95rem;
+            border: 1px solid var(--color-mystic-purple);
         }
 
         .one-line-desc {
             font-family: var(--font-sub);
             font-size: 1.2rem;
             line-height: 1.6;
-            color: var(--color-neon-green);
-            text-shadow: 0 0 5px rgba(57,255,20,0.3);
+            text-align: center;
+            color: #aebfc2;
         }
 
         /* --- Interest Section --- */
@@ -331,36 +288,26 @@
         }
 
         .interest-card {
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border-color: var(--color-acid-purple);
-        }
-
-        .interest-card:hover {
-            transform: scale(1.02);
-            border-color: var(--color-neon-green);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.2);
+            border-color: var(--color-mystic-purple);
         }
 
         .card-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
             display: inline-block;
-            filter: drop-shadow(0 0 8px var(--color-acid-purple));
         }
 
         .interest-card h3 {
             font-family: var(--font-point);
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
-            color: var(--color-acid-purple);
+            color: var(--color-mystic-purple);
         }
 
         .interest-card p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             line-height: 1.8;
-            color: #C0CDC0;
+            color: #afb8be;
         }
 
         /* --- Hobby Section --- */
@@ -375,8 +322,8 @@
 
         .blob-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--color-mystic-blue);
+            backdrop-filter: blur(15px);
+            border: 2px solid var(--color-point-green);
             width: 220px;
             height: 220px;
             display: flex;
@@ -387,18 +334,15 @@
             transition: all 0.4s ease;
             text-align: center;
             padding: 1.5rem;
-            box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
         }
 
-        /* 드림코어의 불규칙하고 기괴한 왜곡 형태 극대화 */
-        .blob-1 { border-radius: 30% 70% 40% 60% / 50% 30% 70% 50%; }
-        .blob-2 { border-radius: 60% 40% 70% 30% / 40% 60% 30% 70%; }
+        .blob-1 { border-radius: 40% 60% 45% 55% / 55% 45% 55% 45%; }
+        .blob-2 { border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; }
 
         .blob-card:hover {
-            transform: scale(1.1) rotate(-5deg);
-            border-color: var(--color-neon-green);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
-            border-radius: 50%; /* 호버시 원형으로 일그러짐 */
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(102, 255, 153, 0.2);
+            background: rgba(11, 15, 25, 0.9);
         }
 
         .blob-card span {
@@ -409,14 +353,13 @@
         .blob-card p {
             font-family: var(--font-point);
             font-size: 1.4rem;
-            letter-spacing: -0.5px;
         }
 
         /* 커스텀 모달 팝업 */
         .modal {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 3, 10, 0.85);
+            background: rgba(6, 8, 13, 0.9);
             backdrop-filter: blur(15px);
             display: flex;
             justify-content: center;
@@ -433,21 +376,20 @@
         }
 
         .modal-content {
-            background: #111610;
-            border: 2px solid var(--color-neon-green);
-            padding: 3rem;
-            border-radius: 0px;
-            max-width: 450px;
+            background: #0f131c;
+            border: 2px solid var(--color-mystic-purple);
+            padding: 3.5rem;
+            max-width: 480px;
             width: 90%;
             text-align: center;
-            box-shadow: 0 0 50px rgba(57, 255, 20, 0.3);
-            transform: scale(0.7) rotate(10deg);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 0 50px rgba(157, 102, 255, 0.2);
+            transform: scale(0.8);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             position: relative;
         }
 
         .modal.active .modal-content {
-            transform: scale(1) rotate(0deg);
+            transform: scale(1);
         }
 
         .close-btn {
@@ -455,7 +397,63 @@
             top: 15px; right: 20px;
             font-size: 2rem;
             cursor: pointer;
-            color: var(--color-acid-purple);
+            color: #626c7f;
+        }
+
+        /* --- [NEW] Music Section (플레이리스트) --- */
+        .music-wrapper {
+            max-width: 650px;
+            width: 100%;
+        }
+
+        .music-card {
+            border-color: var(--color-point-green);
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .track-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--color-mystic-purple);
+            transition: all 0.3s ease;
+        }
+
+        .track-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(5px);
+            border-left-color: var(--color-point-green);
+        }
+
+        .track-num {
+            font-family: var(--font-sub);
+            font-size: 1.1rem;
+            color: var(--color-mystic-purple);
+            width: 40px;
+        }
+
+        .track-info {
+            flex-grow: 1;
+        }
+
+        .track-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .track-artist {
+            font-size: 0.95rem;
+            color: #8e9ca3;
+            font-family: var(--font-sub);
         }
 
         /* --- Strength Section --- */
@@ -466,14 +464,13 @@
             padding: 2rem 0;
         }
 
-        /* 기묘한 핏빛/보랏빛 네온 라인 */
         .timeline-path {
             position: absolute;
             left: 30px;
             top: 0;
-            width: 4px;
+            width: 3px;
             height: 100%;
-            background: linear-gradient(to bottom, transparent, var(--color-acid-purple), var(--color-neon-green), transparent);
+            background: linear-gradient(to bottom, transparent, var(--color-mystic-purple), var(--color-point-green), transparent);
         }
 
         .timeline-item {
@@ -481,98 +478,64 @@
             margin-left: 80px;
         }
 
-        /* 기괴하게 튀어오르는 서서히 회전하는 아이콘 */
         .character-icon {
             position: absolute;
             left: -75px;
-            top: 15px;
-            font-size: 2.2rem;
-            background: #000;
-            border: 2px solid var(--color-neon-green);
+            top: 20px;
+            font-size: 2rem;
+            background: #0b0f19;
+            border: 2px solid var(--color-point-green);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 15px var(--color-neon-green);
-            animation: strangeJump 1.5s infinite ease-in-out;
+            box-shadow: 0 0 15px rgba(102, 255, 153, 0.2);
+            animation: rhythmicJump 2s infinite ease-in-out;
             z-index: 2;
         }
 
-        @keyframes strangeJump {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-25px) rotate(180deg); }
+        @keyframes rhythmicJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
         }
 
-        /* 프로그레스바 강렬한 네온 채우기 */
         .progress-bar-container {
-            background: rgba(0,0,0,0.6);
-            border-radius: 0px;
-            height: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            height: 12px;
             width: 100%;
             margin-top: 1.5rem;
             overflow: hidden;
-            border: 1px solid var(--color-acid-purple);
+            border: 1px solid var(--color-mystic-purple);
         }
 
         .progress-bar {
-            background: linear-gradient(90deg, var(--color-acid-purple), var(--color-neon-green));
+            background: linear-gradient(90deg, var(--color-mystic-purple), var(--color-point-green));
             height: 100%;
             width: 0%;
-            transition: width 2s cubic-bezier(0.1, 1, 0.1, 1);
-            box-shadow: 0 0 10px var(--color-neon-green);
+            transition: width 2s ease-out;
         }
 
         /* --- Future Section --- */
-        #future {
-            overflow: hidden;
-        }
-        
-        .future-bg-elements {
-            position: absolute;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            top: 0; left: 0;
-        }
-
-        /* 핏빛을 머금은 기묘한 거대 보름달 */
-        .dream-moon {
-            position: absolute;
-            top: 5%; right: 5%;
-            width: 160px; height: 160px;
-            background: radial-gradient(circle, #FFF 0%, var(--color-acid-purple) 50%, transparent 100%);
-            border-radius: 50%;
-            filter: drop-shadow(0 0 30px var(--color-acid-purple));
-            opacity: 0.4;
-            animation: pulseMoon 4s infinite alternate;
-        }
-
-        @keyframes pulseMoon {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.1); opacity: 0.5; }
-        }
-
         .future-card {
             max-width: 650px;
             width: 100%;
             position: relative;
-            z-index: 2;
-            border-color: var(--color-mystic-blue);
+            border-color: rgba(255,255,255,0.15);
         }
 
         .paper-plane {
-            font-size: 3rem;
+            font-size: 2.5rem;
             position: absolute;
-            top: -30px; right: -20px;
-            filter: drop-shadow(0 0 8px var(--color-mystic-blue));
-            animation: planeFly 5s infinite linear;
+            top: -25px; right: -15px;
+            filter: drop-shadow(0 0 8px var(--color-point-green));
+            animation: planeFly 6s infinite linear;
         }
 
         @keyframes planeFly {
-            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(-40px, -20px) rotate(-15deg) scale(0.9); }
-            100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -15px) rotate(-10deg); }
         }
 
         /* --- Quiz Section --- */
@@ -583,13 +546,13 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-color: var(--color-neon-green);
+            border-color: var(--color-point-green);
         }
 
         .quiz-progress {
             font-family: var(--font-sub);
-            font-size: 1.1rem;
-            color: var(--color-acid-purple);
+            font-size: 1rem;
+            color: var(--color-mystic-purple);
             text-align: right;
             margin-bottom: 1rem;
         }
@@ -598,25 +561,23 @@
             font-family: var(--font-point);
             font-size: 1.8rem;
             margin-bottom: 2.5rem;
-            line-height: 1.4;
+            line-height: 1.5;
             text-align: center;
             word-break: keep-all;
-            color: #FFF;
         }
 
         .quiz-options {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1rem;
         }
 
         .quiz-btn {
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--color-acid-purple);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--glass-border);
             padding: 1.2rem;
-            border-radius: 0px;
             cursor: pointer;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             text-align: left;
             transition: all 0.3s ease;
             font-family: var(--font-main);
@@ -624,13 +585,11 @@
         }
 
         .quiz-btn:hover {
-            background: var(--color-acid-purple);
-            color: #FFF;
-            transform: translateX(10px);
-            box-shadow: -5px 0 var(--color-neon-green);
+            background: var(--color-mystic-purple);
+            color: #fff;
+            transform: translateX(8px);
         }
 
-        /* 결과 화면 뷰 */
         .result-view {
             display: none;
             text-align: center;
@@ -640,9 +599,8 @@
         .result-title {
             font-family: var(--font-point);
             font-size: 2.2rem;
-            color: var(--color-neon-green);
-            margin-bottom: 2rem;
-            text-shadow: 0 0 10px rgba(57,255,20,0.5);
+            color: var(--color-point-green);
+            margin-bottom: 1.5rem;
         }
 
         .result-desc {
@@ -650,7 +608,7 @@
             line-height: 1.8;
             margin-bottom: 2.5rem;
             word-break: keep-all;
-            color: #D0DED0;
+            color: #adb9c0;
         }
 
         /* --- Summary Section --- */
@@ -667,75 +625,56 @@
 
         .summary-item {
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 0px;
+            border: 1px solid rgba(255,255,255,0.08);
             padding: 2rem;
-            transition: all 0.3s ease;
-        }
-        
-        .summary-item:hover {
-            border-color: var(--color-mystic-blue);
-            background: rgba(0, 229, 255, 0.05);
-            transform: scale(1.03);
         }
 
         .summary-label {
             font-family: var(--font-sub);
-            font-size: 0.95rem;
-            color: var(--color-acid-purple);
-            margin-bottom: 0.6rem;
-            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: var(--color-mystic-purple);
+            margin-bottom: 0.5rem;
         }
 
         .summary-value {
-            font-family: var(--font-main);
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--color-cream);
         }
 
         /* --- Footer --- */
         footer {
-            background: #050905;
-            color: #708570;
+            background: #06090e;
+            color: #5c6975;
             text-align: center;
             padding: 4rem 2rem;
             font-family: var(--font-sub);
-            font-size: 1.1rem;
-            position: relative;
-            border-top: 2px solid #111;
-        }
-
-        .footer-content {
-            position: relative;
-            z-index: 2;
+            font-size: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.02);
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
     </style>
 </head>
 <body>
 
-    <div class="dream-mist" style="top: 5%;"></div>
-    <div class="dream-mist" style="top: 45%; animation-duration: 45s; direction: reverse;"></div>
-    <div class="dream-mist" style="top: 75%; animation-duration: 60s;"></div>
+    <div class="dream-mist" style="top: 10%;"></div>
+    <div class="dream-mist" style="top: 50%; animation-duration: 50s; direction: reverse;"></div>
 
     <div id="fireflies-container"></div>
 
     <section id="hero">
         <div class="glass-card hero-card">
             <h1>김나현의 꿈속 숲에 오신 것을 환영합니다.</h1>
-            <p>[ 경고: 현실의 기억은 잠시 지워집니다 ]</p>
-            <a href="#profile" class="explore-btn">숲 깊은 곳으로 탐험하기</a>
+            <p>[ 깊은 안개 속 기묘한 여정 ]</p>
+            <a href="#profile" class="explore-btn">깊은 무의식 속으로</a>
         </div>
     </section>
 
     <section id="profile">
-        <h2 class="section-title">나를 표현하는 단 하나의 문장</h2>
+        <h2 class="section-title">나를 표현하는 한 문장</h2>
         <div class="profile-container reveal">
             <div class="polaroid">
                 <div class="polaroid-img">🌳</div>
@@ -743,27 +682,27 @@
             <div class="glass-card profile-info">
                 <h3>김 나 현</h3>
                 <div class="tags">
-                    <span class="tag">차분한 심연</span>
-                    <span class="tag">절대적인 안정</span>
+                    <span class="tag">차분한 고요</span>
+                    <span class="tag">왜곡 없는 안정</span>
                 </div>
-                <p class="one-line-desc">"우하하. 이곳에 갇히신 것을 축하합니다."</p>
+                <p class="one-line-desc">"우하하. 영원히 깨어나지 않는 꿈의 조각입니다."</p>
             </div>
         </div>
     </section>
 
     <section id="interest">
-        <h2 class="section-title">내가 좋아하는 왜곡된 세상</h2>
+        <h2 class="section-title">내가 좋아하는 세상</h2>
         <div class="cards-grid">
             <div class="glass-card interest-card reveal">
                 <span class="card-icon">🎧</span>
-                <h3>공백을 채우는 ASMR</h3>
-                <p>작은 주파수들이 만들어내는 기묘하고도 편안한 감성을 집착하듯 좋아합니다. 소음으로 가득 찬 현실 세계를 차단하고, 정신을 잔잔한 안정의 늪으로 침수시키는 나만의 치유 공간입니다.</p>
+                <h3>공백을 메우는 ASMR</h3>
+                <p>주파수의 틈새가 만들어내는 아득하고 아늑한 질감을 사랑합니다. 현실의 날 선 소음들을 뒤로하고, 의식을 잔잔한 고요의 평면으로 밀어 넣는 나만의 완전한 고립적 치유 공간입니다.</p>
             </div>
         </div>
     </section>
 
     <section id="hobby">
-        <h2 class="section-title">나의 기묘한 행복 조각들</h2>
+        <h2 class="section-title">나의 은밀한 행복 조각들</h2>
         <div class="blob-grid reveal">
             <div class="blob-card blob-1" onclick="openModal('drama')">
                 <span>📺</span>
@@ -771,7 +710,7 @@
             </div>
             <div class="blob-card blob-2" onclick="openModal('slime')">
                 <span>🔮</span>
-                <p>형태 없는 물질 (액괴)</p>
+                <p>기묘한 물질 (액괴)</p>
             </div>
         </div>
     </section>
@@ -783,6 +722,38 @@
         </div>
     </div>
 
+    <section id="playlist">
+        <h2 class="section-title">숲에 울려 퍼지는 선율</h2>
+        <div class="music-wrapper reveal">
+            <div class="glass-card music-card">
+                <p style="font-family: var(--font-sub); color: var(--color-point-green); margin-bottom: 1.5rem; font-size: 1.1rem; text-align: center;">[ 공간을 부유하는 영혼의 트랙리스트 ]</p>
+                <div class="track-list">
+                    <div class="track-item">
+                        <div class="track-num">01</div>
+                        <div class="track-info">
+                            <div class="track-title">Give Love</div>
+                            <div class="track-artist">AKMU (악뮤)</div>
+                        </div>
+                    </div>
+                    <div class="track-item">
+                        <div class="track-num">02</div>
+                        <div class="track-info">
+                            <div class="track-title">Beauty and a Beat (feat. Nicki Minaj)</div>
+                            <div class="track-artist">Justin Bieber</div>
+                        </div>
+                    </div>
+                    <div class="track-item">
+                        <div class="track-num">03</div>
+                        <div class="track-info">
+                            <div class="track-title">내 고향 서울엔</div>
+                            <div class="track-artist">검정치마</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="strength">
         <h2 class="section-title">반복되는 강점</h2>
         <div class="timeline-container reveal">
@@ -790,9 +761,9 @@
             <div class="timeline-item">
                 <div class="character-icon">🏃‍♀️</div>
                 <div class="glass-card">
-                    <h3 style="font-family: var(--font-point); font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--color-neon-green);">무한 루프 줄넘기</h3>
-                    <p style="color:#A0B09D; font-family: var(--font-sub); margin-bottom: 1rem;">"차원을 넘나드는 규칙적인 리듬감"</p>
-                    <p style="font-size: 1.05rem; line-height: 1.6;">끝없이 도는 줄을 타이밍 맞춰 뛰어넘듯, 어떠한 환경 속에서도 지치거나 동요하지 않고 정해진 궤도를 묵묵히 걸어가는 끈기가 저의 강력한 무기이자 방어 기제입니다.</p>
+                    <h3 style="font-family: var(--font-point); font-size: 1.8rem; margin-bottom: 0.8rem; color: var(--color-point-green);">무한 루프 줄넘기</h3>
+                    <p style="color:#8fa095; font-family: var(--font-sub); margin-bottom: 1rem;">"궤도를 이탈하지 않는 무서운 성실함"</p>
+                    <p style="font-size: 1.05rem; line-height: 1.6; color: #afb8be;">규칙적인 호흡으로 회전하는 선을 뛰어넘듯, 변칙적인 환경 속에서도 균형을 잃지 않고 동일한 속도로 목표를 완수해 나가는 깊은 끈기를 가지고 있습니다.</p>
                     <div class="progress-bar-container">
                         <div class="progress-bar" id="ropeProgressBar"></div>
                     </div>
@@ -802,15 +773,12 @@
     </section>
 
     <section id="future">
-        <div class="future-bg-elements">
-            <div class="dream-moon"></div>
-        </div>
         <h2 class="section-title">경계 너머의 미래</h2>
         <div class="glass-card future-card reveal">
             <div class="paper-plane">✈️</div>
-            <h3 style="font-family: var(--font-point); margin-bottom: 1rem; font-size: 2rem; color: var(--color-mystic-blue);">고독한 이계 여행</h3>
-            <p class="one-line-desc" style="font-size: 1.2rem; color: var(--color-acid-purple); margin-bottom: 1rem;">"나를 완전히 격리시킨 채 마주하는 새로운 차원의 설계"</p>
-            <p style="font-size: 1.05rem; line-height: 1.8; color: #C0CDC0;">안전하고 설계된 안식처를 과감히 이탈해 낯선 공기 속에서 온전히 나 자신의 영혼을 해체하고 조립하는 시간. 스스로 나아가는 발걸음을 통해 자아를 더 거대하고 단단하게 진화시킬 미래를 도모합니다.</p>
+            <h3 style="font-family: var(--font-point); margin-bottom: 1rem; font-size: 2rem; color: var(--color-mystic-purple);">고독한 이계 여행</h3>
+            <p class="one-line-desc" style="font-size: 1.2rem; color: var(--color-point-green); margin-bottom: 1rem;">"구축된 안식처를 벗어나 홀로 마주하는 낯선 차원"</p>
+            <p style="font-size: 1.05rem; line-height: 1.8; color: #afb8be;">스스로를 완벽히 낯선 곳에 격리하고 온전히 나 자신만의 힘으로 발걸음을 조립하는 시간. 타인에게 의존하지 않고 주도적으로 길을 설계하여 영혼의 부피를 확장해 나갈 미래를 맞이합니다.</p>
         </div>
     </section>
 
@@ -819,41 +787,41 @@
         <div class="glass-card quiz-card reveal" id="quizCard">
             <div id="quizPlayView">
                 <div class="quiz-progress" id="quizProgress">1 / 5</div>
-                <div class="quiz-question" id="quizQuestion">질문 로딩 중...</div>
+                <div class="quiz-question" id="quizQuestion">신호 스캔 중...</div>
                 <div class="quiz-options" id="quizOptions"></div>
             </div>
             
             <div id="quizResultView" class="result-view">
-                <div class="result-title" id="resultTitle">결과 분석 완료</div>
-                <p class="result-desc" id="resultDesc">당신의 정신 체계 정보 분석 중...</p>
-                <button class="explore-btn" onclick="restartQuiz()">기억 초기화 후 다시 테스트</button>
+                <div class="result-title" id="resultTitle">주파수 분석 완료</div>
+                <p class="result-desc" id="resultDesc">정신 체계 정보 해석 중...</p>
+                <button class="explore-btn" style="margin-top:0;" onclick="restartQuiz()">처음으로 돌아가기</button>
             </div>
         </div>
     </section>
 
     <section id="summary">
-        <h2 class="section-title">데이터베이스 백업: 김나현</h2>
+        <h2 class="section-title">코어 데이터 백업: 김나현</h2>
         <div class="summary-wrapper reveal">
             <div class="summary-grid">
                 <div class="summary-item">
-                    <div class="summary-label">// 식별명 및 파동</div>
-                    <div class="summary-value">김나현 / 차분함, 고요한 안정</div>
+                    <div class="summary-label">// 식별명 및 기조</div>
+                    <div class="summary-value">김나현 / 차분한 침묵</div>
                 </div>
                 <div class="summary-item">
-                    <div class="summary-label">// 주파수 수신</div>
-                    <div class="summary-value">심연의 ASMR 감상</div>
+                    <div class="summary-label">// 선호 주파수</div>
+                    <div class="summary-value">고요 속의 ASMR 감상</div>
                 </div>
                 <div class="summary-item">
-                    <div class="summary-label">// 일상적 루프</div>
-                    <div class="summary-value">드라마 해체, 촉각 동화(액괴)</div>
+                    <div class="summary-label">// 축적된 파편</div>
+                    <div class="summary-value">드라마 몰입, 촉각 잔상(액괴)</div>
                 </div>
                 <div class="summary-item">
-                    <div class="summary-label">// 보유 저항력</div>
-                    <div class="summary-value">줄넘기 패턴 (무한한 끈기)</div>
+                    <div class="summary-label">// 고유 저항력</div>
+                    <div class="summary-value">줄넘기 루프 (규칙적 성실)</div>
                 </div>
-                <div class="summary-item" style="grid-column: 1 / -1; border-color: var(--color-neon-green);">
-                    <div class="summary-label">// 예고된 가상 타겟</div>
-                    <div class="summary-value" style="color: var(--color-neon-green);">👁️ 홀로 미지의 세계를 탐험하며 영혼 확장하기</div>
+                <div class="summary-item" style="grid-column: 1 / -1; border-color: var(--color-point-green);">
+                    <div class="summary-label">// 설정된 종착지</div>
+                    <div class="summary-value" style="color: var(--color-point-green);">✨ 스스로 온전히 서서 미지의 낯선 세계 개척하기</div>
                 </div>
             </div>
         </div>
@@ -861,43 +829,42 @@
 
     <footer>
         <div class="footer-content">
-            <p>"눈을 떠도 이 숲은 끝나지 않습니다."</p>
-            <p style="font-size: 0.9rem; margin-top: 1.5rem; opacity: 0.4; font-family: var(--font-main); letter-spacing: 1px;">© 2026 Kim Na-Hyun Dreamcore System. All Matrix Reserved.</p>
+            <p>"안개는 걷히지 않고, 꿈은 이어집니다."</p>
+            <p style="font-size: 0.85rem; margin-top: 1.5rem; opacity: 0.3; font-family: var(--font-main);">© 2026 Kim Na-Hyun Dreamcore Archive. All Matrix Reserved.</p>
         </div>
     </footer>
 
 
     <script>
-        /* (1) 기묘한 네온 입자 생성 */
+        /* (1) 미세 인광 생성 */
         const firefliesContainer = document.getElementById('fireflies-container');
-        const fireflyCount = 35; // 입자 수 증가
+        const fireflyCount = 20;
 
         for (let i = 0; i < fireflyCount; i++) {
             const firefly = document.createElement('div');
             firefly.classList.add('firefly');
             
-            // 특유의 Weirdcore 색상 다양화 (초록색 혹은 보라색)
-            if(Math.random() > 0.6) {
-                firefly.style.background = 'var(--color-acid-purple)';
-                firefly.style.filter = 'drop-shadow(0 0 8px var(--color-acid-purple))';
+            if(Math.random() > 0.7) {
+                firefly.style.background = 'var(--color-mystic-purple)';
+                firefly.style.filter = 'drop-shadow(0 0 6px var(--color-mystic-purple))';
             }
             
             firefly.style.left = `${Math.random() * 100}vw`;
             firefly.style.top = `${Math.random() * 100}vh`;
-            firefly.style.animationDelay = `${Math.random() * 8}s`;
-            firefly.style.animationDuration = `${6 + Math.random() * 10}s`;
+            firefly.style.animationDelay = `${Math.random() * 10}s`;
+            firefly.style.animationDuration = `${10 + Math.random() * 8}s`;
             
             firefliesContainer.appendChild(firefly);
         }
 
-        /* (2) 스크롤 감지 애니메이션 (Intersection Observer) */
+        /* (2) 스크롤 감지 애니메이션 */
         const titles = document.querySelectorAll('.section-title');
         const reveals = document.querySelectorAll('.reveal');
         const progressBar = document.getElementById('ropeProgressBar');
 
         const observerOptions = {
             root: null,
-            threshold: 0.1
+            threshold: 0.12
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -905,7 +872,7 @@
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                     if (entry.target.contains(progressBar)) {
-                        progressBar.style.width = '92%'; // 게이지 상승폭 증가
+                        progressBar.style.width = '88%';
                     }
                 }
             });
@@ -915,15 +882,15 @@
         reveals.forEach(reveal => observer.observe(reveal));
 
 
-        /* (3) 취미 모달 데이터 (매끄럽고 기묘한 텍스트 튠업) */
+        /* (3) 모달 윈도우 스크립트 */
         const modalData = {
             drama: {
                 title: "📺 타인의 차원 관찰 (드라마 보기)",
-                text: "설계된 가상 세계의 왜곡된 이야기 속으로 자아를 파묻는 의식입니다. 조작된 인물들의 비현실적인 감정선을 응시하며, 가상과 현실 사이에서 지친 정신 회로를 비워냅니다."
+                text: "구축된 정교한 이야기 속으로 나를 완벽하게 침수시키는 시간입니다. 화면 너머 배역들의 밀도 높은 감정선을 관조하며, 피로했던 현실의 자아를 완전히 탈각시키고 영감을 흡수합니다."
             },
             slime: {
-                title: "🔮 형태 없는 물질 (슬라임 놀이)",
-                text: "손끝의 촉각 세포를 자극하는 정의 내릴 수 없는 기묘한 질감에 집중합니다. 아무런 논리 없이 물질을 짓이기고 늘리다 보면 머릿속을 괴롭히던 무거운 생각 파편들이 무취무색하게 증발합니다."
+                title: "🔮 기묘한 물질 (슬라임 놀이)",
+                text: "손끝을 자극하는 정의 내릴 수 없는 완벽한 질감과 유기적인 형태에 온 신경을 집중합니다. 어떠한 형태든 수용하는 물질을 어루만지다 보면 뇌리에 엉켜있던 복잡한 노이즈들이 말끔히 휘발됩니다."
             }
         };
 
@@ -932,8 +899,8 @@
             const body = document.getElementById('modalBody');
             
             body.innerHTML = `
-                <h3 style="font-family: var(--font-point); color: var(--color-neon-green); margin-bottom:1.5rem; font-size:1.8rem;">${modalData[type].title}</h3>
-                <p style="line-height:1.8; font-size: 1.1rem; word-break:keep-all; color:#C0CDC0;">${modalData[type].text}</p>
+                <h3 style="font-family: var(--font-point); color: var(--color-point-green); margin-bottom:1.5rem; font-size:1.8rem;">${modalData[type].title}</h3>
+                <p style="line-height:1.8; font-size: 1.1rem; word-break:keep-all; color:#afb8be;">${modalData[type].text}</p>
             `;
             modal.classList.add('active');
         }
@@ -943,13 +910,13 @@
         }
 
 
-        /* (4) 인터랙션 드림 퀴즈 시스템 (드림코어 텍스트 최적화) */
+        /* (4) 인터랙션 드림 퀴즈 시스템 */
         const quizData = [
-            { q: "안개 낀 숲길을 걷다 발에 채인 무언가, 고개를 들어 응시한 것은?", a: "기묘하게 반짝이는 보라색 별", b: "내 미래가 적혀있는 듯한 타버린 일기장" },
-            { q: "지배당하고 싶은 나만의 시간 영역은?", a: "사물이 흐릿해지는 왜곡된 새벽 4시", b: "어둠이 모든 것을 집어삼키는 자정 무렵" },
-            { q: "스스로를 고립시키기 위해 흘러 들어가고 싶은 차원은?", a: "바닥이 보이지 않는 심해의 한가운데", b: "출구를 알 수 없는 거대하고 울창한 미로의 숲" },
-            { q: "정신 신호에 무거운 과부하가 걸렸을 때 선택하는 도피처는?", a: "뇌를 마비시키는 몽환적인 ASMR 주파수", b: "다른 세계의 타임라인을 훔쳐보는 드라마 시청" },
-            { q: "내가 개척하고 싶은 가장 가치 있는 미래의 루프는?", a: "기억을 모두 지운 채 떠나는 완전히 새로운 모험", b: "어떤 왜곡에도 깨지지 않는 완전한 내면의 안식" }
+            { q: "안개 낀 숲길을 걷다 발에 채인 무언가, 고개를 들어 응시한 것은?", a: "기묘하게 반짝이는 보라색 별", b: "내 미래가 적혀있는 듯한 오래된 일기장" },
+            { q: "지배당하고 싶은 나만의 시간 영역은?", a: "모든 사물이 불분명해지는 새벽 4시", b: "적막이 사방을 뒤덮는 한밤중 자정" },
+            { q: "스스로를 고립시키기 위해 흘러 들어가고 싶은 차원은?", a: "빛조차 닿지 않는 깊은 심해의 한가운데", b: "출구를 영영 찾을 수 없는 아늑한 미로의 숲" },
+            { q: "정신 신호에 무거운 과부하가 걸렸을 때 선택하는 도피처는?", a: "공백을 몽환적으로 채우는 ASMR 주파수", b: "다른 차원의 타임라인을 응시하는 드라마 시청" },
+            { q: "내가 개척하고 싶은 가장 가치 있는 미래의 루프는?", a: "기억을 모두 지운 채 떠나는 낯선 차원의 모험", b: "어떤 파동에도 흔들리지 않는 내면의 완전한 안식" }
         ];
 
         let currentQuestionIndex = 0;
@@ -965,12 +932,12 @@
         function loadQuestion() {
             if (currentQuestionIndex < quizData.length) {
                 const currentQuiz = quizData[currentQuestionIndex];
-                progressEl.innerText = `SYS_LOG: ${currentQuestionIndex + 1} / ${quizData.length}`;
+                progressEl.innerText = `LOG_ID: ${currentQuestionIndex + 1} / ${quizData.length}`;
                 questionEl.innerText = currentQuiz.q;
                 
                 optionsContainer.innerHTML = `
-                    <button class="quiz-btn" onclick="selectOption('A')">◎ ${currentQuiz.a}</button>
-                    <button class="quiz-btn" onclick="selectOption('B')">◎ ${currentQuiz.b}</button>
+                    <button class="quiz-btn" onclick="selectOption('A')">⊙ ${currentQuiz.a}</button>
+                    <button class="quiz-btn" onclick="selectOption('B')">⊙ ${currentQuiz.b}</button>
                 `;
             } else {
                 showQuizResult();
@@ -993,11 +960,11 @@
             const descEl = document.getElementById('resultDesc');
             
             if (scoreB >= scoreA) {
-                titleEl.innerHTML = "👁️ 정적을 삼키는 '안정형 심연 보행자'";
-                descEl.innerText = "당신은 기묘한 적막과 흔들리지 않는 내면의 사원을 수호하는 자입니다. 김나현 학생이 구축해 놓은 비밀스러운 숲속 주파수(ASMR)와 왜곡되지 않는 규칙적 형태(슬라임)에 극도로 동화되어 깊은 안도감을 느끼는 영혼의 소유자군요.";
+                titleEl.innerHTML = "👁️ 안식을 수호하는 '고요한 심연 보행자'";
+                descEl.innerText = "당신은 기묘한 적막과 흔들리지 않는 조용한 사원을 수호하는 영혼입니다. 나현 학생이 구축해 놓은 비밀스러운 안개 주파수(ASMR)와 완전한 안정감에 동화되어 깊은 안도감을 느끼는 성향이군요.";
             } else {
-                titleEl.innerHTML = "👁️ 성간을 가르는 '코드네임: 경계 탐험가'";
-                descEl.innerText = "당신은 어둠 속에서도 왜곡된 별빛을 귀신같이 찾아내고 짜릿함을 느끼는 설계자입니다. 차분함 아래 숨겨둔 '완전한 자아 분리형 고독한 여행'이라는 거대한 충동을 마음에 품고 기꺼이 미지의 경계선을 무너뜨리는 강력한 에너지를 지니고 있습니다.";
+                titleEl.innerHTML = "👁️ 성간을 가르는 '경계면의 탐험가'";
+                descEl.innerText = "당신은 어둠 속에서도 낯선 이정표를 찾아내고 짜릿함을 느끼는 자아를 가졌습니다. 차분함 아래 숨겨둔 '홀로 떠나는 완전한 분리의 여행'이라는 잠재된 충동을 가지고 미지의 영역을 설계하는 에너지가 있습니다.";
             }
         }
 
